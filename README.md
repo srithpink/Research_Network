@@ -1,3 +1,2 @@
 # Research_Network
-Social Network for Researcher.
-ahfsj
+Social Network for Researcher
