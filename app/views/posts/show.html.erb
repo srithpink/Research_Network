@@ -1,0 +1,26 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Attachment:</strong>
+
+  <%= image_tag @post.attachment_url.to_s if @post.attachment_url.present? %>
+</p>
+
+<p>
+  <strong>Context:</strong>
+  <%= @post.context %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @post.user %>
+</p>
+<%= link_to like_post_path(@post), method: :put do %>
+Upvote
+<%= @post.get_upvotes.size %>
+<%end%>
+
+<%= link_to dislike_post_path(@post), method: :put do %>
+	Downvote
+	<%= @post.get_downvotes.size %>
+	<% end %>
