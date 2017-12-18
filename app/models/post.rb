@@ -3,5 +3,5 @@ class Post < ApplicationRecord
   mount_uploader :attachment, AvatarUploader
   validates :user_id, presence: true
   acts_as_votable
-   has_many :comments
+   has_many :comments, dependent: :destroy
 end
