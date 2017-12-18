@@ -10,24 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171215062150) do
+ActiveRecord::Schema.define(version: 20171218052451) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
-    t.string "title", limit: 50, default: ""
-    t.text "comment"
-    t.string "commentable_type"
-    t.bigint "commentable_id"
-    t.bigint "user_id"
-    t.string "role", default: "comments"
+    t.string "name"
+    t.text "body"
+    t.bigint "post_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["commentable_id"], name: "index_comments_on_commentable_id"
-    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
-    t.index ["commentable_type"], name: "index_comments_on_commentable_type"
-    t.index ["user_id"], name: "index_comments_on_user_id"
+    t.index ["post_id"], name: "index_comments_on_post_id"
   end
 
   create_table "follows", force: :cascade do |t|
@@ -96,5 +90,6 @@ ActiveRecord::Schema.define(version: 20171215062150) do
     t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
   end
 
+  add_foreign_key "comments", "posts"
   add_foreign_key "posts", "users"
 end

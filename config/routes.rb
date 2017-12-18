@@ -5,7 +5,9 @@ Rails.application.routes.draw do
     put "dislike", to: "posts#downvote"
   end
 end
-
+resources :posts do
+  resources :comments
+end
 
   resources :posts
 	  get 'home/index'

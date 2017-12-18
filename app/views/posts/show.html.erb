@@ -10,7 +10,12 @@
   <strong>Context:</strong>
   <%= @post.context %>
 </p>
-
+<br>
+  <h2> <%= @post.comments.count %> Comments </h2>
+  <%= render @post.comments %>
+  <h3>Add a comment </h3>
+  <br>
+  <%= render "comments/form" %>
 <p>
   <strong>User:</strong>
   <%= @post.user %>
