@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+ 
+  resources :pmembers
+
+ 
+
  resources :posts do 
   member do
     put "like", to: "posts#upvote"
@@ -8,11 +13,17 @@ end
 resources :posts do
   resources :comments
 end
-
-  resources :posts
+resources :home do
+  member do
+    get :following, :followers
+  end
+end
+resources :relationships, only: [:create, :destroy]
+resources :home
+  resources :relationships
 	  get 'home/index'
       get 'home/show'
-      get 'home/susers'
+     
       get 'posts/show'
   root to: "home#index"
   devise_for :users, controllers: {

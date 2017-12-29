@@ -1,0 +1,10 @@
+<center> 
+<h1>List of users </h1>
+
+
+<% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.name, pmember_path(id: user.id) %></td><br>
+      </tr> 
+      <% end %>
+      </center>

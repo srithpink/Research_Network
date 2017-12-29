@@ -10,6 +10,11 @@
   <div id="user_nav">
     <% if user_signed_in? %>
         Signed in as <%= current_user.name %>. This cannot be cheese?
+    
+       <h3>followers </h3>
+   <%= current_user.followers.count %>
+    <h4>following </h4>
+     <%= current_user.following.count %></br>
         <%= link_to 'Sign out', destroy_user_session_path(:authenticity_token => form_authenticity_token()) , :method => 'delete'%>
         <%= form_for Post.new do |f| %>
   <div class="form-group">
@@ -19,6 +24,7 @@
       <%= f.file_field :attachment, class: 'form-control' %>
   </div>
   <%= f.submit :post, class: 'btn btn-primary'%>
+
   <%= link_to 'Show', posts_path%>
  
 <% end %>
