@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   resources :pmembers
 
  
-
+resources :conversations do
+  resources :messages
+ end
  resources :posts do 
   member do
     put "like", to: "posts#upvote"
