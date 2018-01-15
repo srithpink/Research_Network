@@ -1,5 +1,5 @@
 class PmembersController < ApplicationController
-  
+  # display ist of users
 def index
   	@user = User.all
   end

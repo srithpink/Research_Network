@@ -1,6 +1,6 @@
 class ConversationsController < ApplicationController
   protect_from_forgery
-
+  
   def index
   	@users = User.all
   	@conversations = Conversation.all

@@ -1,15 +1,18 @@
-Rails.application.routes.draw do
- 
-  resources :pmembers
+ Rails.application.routes.draw do
+  resources :activities
+  get 'activities/index'
 
- 
+  get 'posts/_form'
+  resources :pmembers  
 resources :conversations do
   resources :messages
+  resources :notifications, only: [:index]
  end
  resources :posts do 
   member do
     put "like", to: "posts#upvote"
     put "dislike", to: "posts#downvote"
+    resources :comments
   end
 end
 resources :posts do

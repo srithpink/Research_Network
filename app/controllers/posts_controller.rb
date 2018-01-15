@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-skip_before_action :verify_authenticity_token 
+  skip_before_action :verify_authenticity_token 
+  
   # GET /posts
   # GET /posts.json
   def index
@@ -25,6 +26,7 @@ skip_before_action :verify_authenticity_token
 
   # POST /posts
   # POST /posts.json
+  # create new posts for current user
   def create
     @post = Post.new(post_params) do |post|
       post.user = current_user
@@ -36,14 +38,14 @@ skip_before_action :verify_authenticity_token
       redirect_to root_path, notice: @post.errors.full_messages.first
     end      
   end
-
+ # like the post
 def upvote
   @post = Post.find(params[:id])
   @post.upvote_by current_user
   redirect_back fallback_location: root_path
  
 end
-
+# unlike the post 
 def downvote
   @post = Post.find(params[:id])
   @post.downvote_by current_user

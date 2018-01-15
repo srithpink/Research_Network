@@ -1,7 +1,13 @@
 class HomeController < ApplicationController
-
-  def index
-  	@users = User.all
-  end
-   
+  
+  has_many :notifications, foreign_key: :recipient_id
+    def index
+  		@users = User.all
+    end
 end
+
+
+
+
+   
+
